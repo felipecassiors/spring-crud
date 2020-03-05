@@ -1,10 +1,16 @@
-image: gitpod/workspace-mongodb
+image:
+  file: .gitpod.Dockerfile
+
+# image:
+#  file: .gitpod.Dockerfile
 
 tasks:
-  - init: ./mvnw spring-boot:run
+  # - command: mkdir -p /workspace/data && mongod --dbpath /workspace/data
+  - command: ./mvnw spring-boot:run
 
 ports:
   - port: 8080
+    onOpen: ignore
 
 vscode:
   extensions:
