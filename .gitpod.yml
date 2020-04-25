@@ -2,8 +2,9 @@ image: gitpod/workspace-mongodb
 
 tasks:
   - name: MongoDB
-    before: mkdir -p /workspace/data && mongod --dbpath /workspace/data
-  - init: ./mvnw spring-boot:run
+    command: mkdir -p /workspace/data && mongod --dbpath /workspace/data
+  - prebuild: ./mvnw dependency:resolve && ./mvnw compile
+    command: ./mvnw spring-boot:run
   - command: gp preview "$(gp url 8080)/swagger-ui.html"; exit
 
 ports:
